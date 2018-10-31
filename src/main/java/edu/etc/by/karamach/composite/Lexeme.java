@@ -22,6 +22,11 @@ public class Lexeme implements AbstractSyntaxObject, Serializable {
         return value;
     }
 
+    @Override
+    public List<AbstractSyntaxObject> getChildren() {
+        return children;
+    }
+
     public void setValue(String value) {
         this.value = value;
     }
@@ -39,8 +44,18 @@ public class Lexeme implements AbstractSyntaxObject, Serializable {
     }
 
     @Override
-    public void execute() {
+    public String print() {
+        if (children == null || (children.size() == 0)) {
+            return value;
+        } else {
+            StringBuilder stringBuilder = new StringBuilder();
 
+            for (AbstractSyntaxObject object : children) {
+                stringBuilder.append(object.print());
+            }
+
+            return stringBuilder.toString();
+        }
     }
 
     @Override

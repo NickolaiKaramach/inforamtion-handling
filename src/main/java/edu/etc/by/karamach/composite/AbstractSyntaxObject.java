@@ -1,5 +1,9 @@
 package edu.etc.by.karamach.composite;
 
+import java.util.List;
+
 public interface AbstractSyntaxObject {
-    void execute();
+    String print();
+
+    List<AbstractSyntaxObject> getChildren();
 }

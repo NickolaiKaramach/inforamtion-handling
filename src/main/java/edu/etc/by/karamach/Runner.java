@@ -1,5 +1,10 @@
 package edu.etc.by.karamach;
 
+import edu.etc.by.karamach.action.SortManager;
+import edu.etc.by.karamach.comparator.LexemesByLengthComparator;
+import edu.etc.by.karamach.comparator.LexemesBySymbAndAlphComparator;
+import edu.etc.by.karamach.comparator.PartBySentenceAmountComparator;
+import edu.etc.by.karamach.composite.AbstractSyntaxObject;
 import edu.etc.by.karamach.composite.Text;
 import edu.etc.by.karamach.handler.LexemeConstructor;
 import edu.etc.by.karamach.handler.PartConstructor;
@@ -7,6 +12,7 @@ import edu.etc.by.karamach.handler.SentenceConstructor;
 import edu.etc.by.karamach.handler.TextConstructor;
 import edu.etc.by.karamach.receiver.StringFileReader;
 
+import java.util.Comparator;
 import java.util.List;
 
 public class Runner {
@@ -36,6 +42,15 @@ public class Runner {
 //        System.out.println(finalString.replaceAll("\n", "\n\n\n"));
 
         Text text = textConstructor.construct(totalString.toString());
-        text.getValue();
+        System.out.println(text.print());
+        Comparator<AbstractSyntaxObject> comparator = new LexemesByLengthComparator();
+        Comparator<AbstractSyntaxObject> comparatorParts = new PartBySentenceAmountComparator();
+        Comparator<AbstractSyntaxObject> comparatorLexemes = new LexemesBySymbAndAlphComparator('e');
+
+
+        SortManager sortManager = new SortManager(text);
+        sortManager.sortLexemes(comparatorLexemes);
+
+        System.out.println(text.print());
     }
 }

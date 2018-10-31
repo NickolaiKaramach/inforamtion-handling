@@ -7,6 +7,8 @@ import java.util.Objects;
 
 public class Text implements AbstractSyntaxObject, Serializable {
     private static final long serialVersionUID = -6714750132371681501L;
+    private static final String TAB_BETWEEN_PARTS = "\n\t";
+    private static final String FIRST_TAB_IN_TEXT = "\t";
 
     transient private List<AbstractSyntaxObject> children = new ArrayList<>();
     private String value;
@@ -26,6 +28,12 @@ public class Text implements AbstractSyntaxObject, Serializable {
         this.value = value;
     }
 
+    @Override
+    public List<AbstractSyntaxObject> getChildren() {
+        return children;
+    }
+
+
     public void add(AbstractSyntaxObject syntaxObject) {
         this.children.add(syntaxObject);
     }
@@ -39,9 +47,21 @@ public class Text implements AbstractSyntaxObject, Serializable {
     }
 
     @Override
-    public void execute() {
+    public String print() {
+        if (children == null || (children.size() == 0)) {
+            return value;
+        } else {
+            StringBuilder stringBuilder = new StringBuilder(FIRST_TAB_IN_TEXT);
 
+            for (AbstractSyntaxObject object : children) {
+                stringBuilder.append(object.print());
+                stringBuilder.append(TAB_BETWEEN_PARTS);
+            }
+
+            return stringBuilder.toString();
+        }
     }
+
 
     @Override
     public String toString() {

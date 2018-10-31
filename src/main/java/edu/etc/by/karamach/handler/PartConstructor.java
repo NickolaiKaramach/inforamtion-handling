@@ -7,7 +7,7 @@ public class PartConstructor implements InformationConstructor {
     private static final String EXCLAMATION_REGEX = "!";
     private static final String SENTENCE_END_MARK = "*end*";
     private static final String DOTS_REGEX = "((\\.){3})";
-    private static final String SINGLE_DOT_REGEX = "(\\.)(([^*.\\s])|($))";
+    private static final String SINGLE_DOT_REGEX = "(\\.)(([^*.])|($))";
     private static final String SENTENCE_END_MARK_REGEX = "\\*end\\*(\\s*)";
     private InformationConstructor nextHandler;
 
