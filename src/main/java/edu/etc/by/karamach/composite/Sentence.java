@@ -6,11 +6,20 @@ import java.util.List;
 import java.util.Objects;
 
 public class Sentence implements AbstractSyntaxObject, Serializable {
-    private static final long serialVersionUID = 3629866145238118942L;
+
+    private static final long serialVersionUID = -3878209528829728817L;
+
     private static final String SPACE_BETWEEN_LEXEMES = " ";
 
     transient private List<AbstractSyntaxObject> children = new ArrayList<>();
-    private String value;
+
+    private String value = "";
+
+
+    /*
+     *      Methods:
+     *
+     */
 
     public Sentence(String value) {
         this.value = value;
@@ -47,8 +56,11 @@ public class Sentence implements AbstractSyntaxObject, Serializable {
     @Override
     public String print() {
         if (children == null || (children.size() == 0)) {
+
             return value;
+
         } else {
+
             StringBuilder stringBuilder = new StringBuilder();
 
             for (AbstractSyntaxObject object : children) {

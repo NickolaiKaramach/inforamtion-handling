@@ -5,11 +5,23 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+/**
+ * Lexeme syntax object
+ *
+ * @author Nickolai Karamach
+ */
 public class Lexeme implements AbstractSyntaxObject, Serializable {
-    private static final long serialVersionUID = 8707118521730556652L;
 
-    private String value;
+    private static final long serialVersionUID = -9114200734932264324L;
+
+    private String value = "";
+
     transient private List<AbstractSyntaxObject> children = new ArrayList<>();
+
+    /*
+     *      Methods:
+     *
+     */
 
     public Lexeme(String value) {
         this.value = value;
@@ -43,11 +55,14 @@ public class Lexeme implements AbstractSyntaxObject, Serializable {
         this.children.clear();
     }
 
+
     @Override
     public String print() {
+
         if (children == null || (children.size() == 0)) {
             return value;
         } else {
+
             StringBuilder stringBuilder = new StringBuilder();
 
             for (AbstractSyntaxObject object : children) {
@@ -78,11 +93,12 @@ public class Lexeme implements AbstractSyntaxObject, Serializable {
         }
 
         Lexeme lexeme = (Lexeme) obj;
+
         return value.equals(lexeme.getValue()) &&
                 children.equals(lexeme.children);
     }
 
-    //TODO: QUESTION: Would we make our hash?
+    //TODO: QUESTION:Do we need our own hash?
     @Override
     public int hashCode() {
         return Objects.hash(value, children);

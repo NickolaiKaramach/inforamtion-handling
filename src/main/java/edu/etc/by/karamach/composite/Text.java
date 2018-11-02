@@ -6,12 +6,23 @@ import java.util.List;
 import java.util.Objects;
 
 public class Text implements AbstractSyntaxObject, Serializable {
-    private static final long serialVersionUID = -6714750132371681501L;
+
+    private static final long serialVersionUID = -6611715387072941096L;
+
     private static final String TAB_BETWEEN_PARTS = "\n\t";
+
     private static final String FIRST_TAB_IN_TEXT = "\t";
 
     transient private List<AbstractSyntaxObject> children = new ArrayList<>();
-    private String value;
+
+    private String value = "";
+
+
+
+    /*
+     *      Methods:
+     *
+     */
 
     public Text(String value) {
         this.value = value;
@@ -51,6 +62,7 @@ public class Text implements AbstractSyntaxObject, Serializable {
         if (children == null || (children.size() == 0)) {
             return value;
         } else {
+
             StringBuilder stringBuilder = new StringBuilder(FIRST_TAB_IN_TEXT);
 
             for (AbstractSyntaxObject object : children) {

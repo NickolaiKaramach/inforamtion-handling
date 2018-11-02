@@ -6,11 +6,19 @@ import java.util.List;
 import java.util.Objects;
 
 public class Part implements AbstractSyntaxObject, Serializable {
-    private static final long serialVersionUID = 5848439469391337096L;
+
+    private static final long serialVersionUID = 3410120872863341676L;
+
     private static final String SPACE_BETWEEN_SENTENCES = " ";
 
     transient private List<AbstractSyntaxObject> children = new ArrayList<>();
-    private String value;
+
+    private String value = "";
+
+    /*
+     *      Methods:
+     *
+     */
 
     public Part(String value) {
         this.value = value;
@@ -47,8 +55,11 @@ public class Part implements AbstractSyntaxObject, Serializable {
     @Override
     public String print() {
         if (children == null || (children.size() == 0)) {
+
             return value;
+
         } else {
+
             StringBuilder stringBuilder = new StringBuilder();
 
             for (AbstractSyntaxObject object : children) {
